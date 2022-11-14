@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTT Planet</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/main.js" defer></script>
+  </head>
+  <body>
+    <div id="wrap">
+      <section class="sign-container">
+        <div class="sign-container__join">
+          <h2>LOGIN</h2>
+          <form class="sign-form">
+            <div class="sign-input_wrap full">
+              <input
+                id="inputId"
+                type="text"
+                required
+                onfocus="this.placeholder=''"
+                class="sign-input"
+              />
+              <label for="#inputId">ID</label>
+            </div>
+            <div class="sign-input_wrap full">
+              <input
+                id="inputPassword"
+                type="password"
+                required
+                onfocus="this.placeholder=''"
+                class="sign-input"
+              />
+              <label for="#inputPassword">PASSWORD</label>
+            </div>
+            <div class="sign-input_wrap full">
+              <input
+                id="lastName"
+                type="text"
+                required
+                onfocus="this.placeholder=''"
+                class="sign-input"
+              />
+              <label for="#lastName">PASSWORD-CHECK</label>
+            </div>
+            <div class="btn-container">
+              <button class="btn-style cancel" type="submit">Cancel</button>
+              <button class="btn-style" type="submit">Confirm</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
