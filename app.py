@@ -1,4 +1,4 @@
-# import requests
+import requests
 from flask import Flask, jsonify, render_template, request
 app = Flask(__name__)
 
@@ -41,8 +41,10 @@ headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/
 def home():
     return render_template('main.html')
 
+
 @app.route("/main", methods=["POST"])
 def comments_post():
+    # nickName_receive = request.form['nickName_give']
     ott_receive = request.form['ott_give']
     contents_receive = request.form['contents_give']
     comment_receive = request.form['comment_give']
@@ -51,9 +53,12 @@ def comments_post():
     
     return jsonify({'msg': '한 줄 평 작성 완료'})
 
+
+
 @app.route("/main", methods=["GET"])
 def comments_get():
         comments_list = list(db.comments.find({},{'_id': False}))
+
         return jsonify({'comments': comments_list})
 
 if __name__ == '__main__':
