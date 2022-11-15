@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>OTT Planet</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/main.js" defer></script>
-  </head>
-  <body>
-    <div id="wrap">
-      <section class="sign-container">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css"/>
+    <script src="../static/js/main.js" defer></script>
+</head>
+<body>
+<div id="wrap">
+    <section class="sign-container">
         <div class="sign-container__login">
-          <h2>LOGIN</h2>
-          <form class="login-form">
-            <div class="sign-input_wrap full">
-              <input
-                id="inputId"
-                type="text"
-                required
-                onfocus="this.placeholder=''"
-                class="sign-input"
-              />
-              <label for="#inputId">ID</label>
-            </div>
-            <div class="sign-input_wrap full">
-              <input
-                id="inputPassword"
-                type="password"
-                required
-                onfocus="this.placeholder=''"
-                class="sign-input"
-              />
-              <label for="#inputPassword">PASSWORD</label>
-            </div>
-            <div class="btn-container">
-              <button class="btn-style" type="submit">Login</button>
-            </div>
-          </form>
+            <h2>LOGIN</h2>
+            <form class="login-form">
+                <div class="sign-input_wrap full">
+                    <input
+                            id="inputId"
+                            type="text"
+                            required
+                            onfocus="this.placeholder=''"
+                            class="sign-input"
+                    />
+                    <label for="inputId">ID</label>
+                </div>
+                <div class="sign-input_wrap full">
+                    <input
+                            id="inputPassword"
+                            type="password"
+                            required
+                            onfocus="this.placeholder=''"
+                            class="sign-input"
+                    />
+                    <label for="inputPassword">PASSWORD</label>
+                </div>
+                <div class="btn-container">
+                    <button class="btn-style" type="button" id="">Login</button>
+                </div>
+            </form>
         </div>
-      </section>
-    </div>
-  </body>
+    </section>
+</div>
+</body>
 </html>
