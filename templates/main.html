@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+
+    <title>OTT Planet main</title>
+
+  </head>
+
+  <body>
+      
+    <div class="table">
+        <!-- <div class="tCon">
+            <button onclick="open_box()" id="ott">Netflix</button>
+            <button onclick="open_box()" id="ott">Wavve</button>
+            <button onclick="open_box()" id="ott">Disney+</button>
+        </div> -->
+        <div class="tWrap">
+            <p class="tTit">Comment 작성</p>
+            <thead>
+                <div class="inputBox">
+                    <div class="tName">
+                        <p>Nickname</p>
+                    </div>
+                    <div class="tOtt">
+                        <p>OTT</p>
+                    </div>
+                    <div class="tInput1">
+                        <input id="contents" type="text" placeholder="Contents">
+                    </div>
+                
+                    <div class="tInput2">
+                        <input id="comment" type="text" placeholder="Comment">
+                    </div>
+                </div>
+                <button onclick="add_comment()" class="tBtn">글쓰기</button>
+            </thead>
+            <div id="tBox" class="tlist">
+                <ul>
+                    <li></li>
+                    <li></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+  <script>
+  $(document).ready(function () {
+      show_comment();
+  });
+  
+  function show_comment() {
+      $('#tBox').empty()
+  
+      $.ajax({
+          type: 'GET',
+          url: '/main',
+          data: {},
+          success: function (response) {
+              let rows = response['comments']
+              for(let i =0; i<rows.length; i++){
+                  let contents = rows[i]['contents']
+                  let comment = rows[i]['comment']
+  
+                  let temp_html = `<ul>
+                                      <li>${contents}</li>
+                                      <li>${comment}</li>
+                                  </ul>`
+  
+                  $('#tBox').append(temp_html)
+              }
+          }
+      });
+  }
+
+
+  
+  function add_comment() {
+      let contents = $('#contents').val()
+      let comment = $('#comment').val()
+  
+      $.ajax({
+          type: 'POST',
+          url: '/main',
+          data: { contents_give: contents, comment_give: comment},
+           success: function (response) {
+            console.log(response)
+              alert(response['msg'])
+              window.location.reload()
+          }
+      });
+  }
+  </script>
+  </body>
+</html>
+
+
+
+
+
+
+
