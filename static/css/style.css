@@ -1,5 +1,21 @@
 @import url(./reset.css);
 
+/* index */
+#index-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#index-wrap img {
+  width: 80%;
+  max-width: 800px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
 /* join */
 #wrap {
   width: 100%;
@@ -121,14 +137,13 @@
   color: #fff;
 }
 
-
 /* main -ott btn test */
-.tCon{
+.tCon {
   display: flex;
   justify-content: center;
 }
 
-.tCon button{
+.tCon button {
   width: 500px;
   height: 50px;
   border: 2px solid #fff;
@@ -139,7 +154,7 @@
 }
 /* main -comments */
 
-.table{
+.table {
   background-image: url(../img/back_.jpg);
   background-size: cover;
   width: 100vw;
@@ -147,8 +162,8 @@
   position: relative;
 }
 
-.tWrap{
-  background: rgba(0,0,0,0.4);
+.tWrap {
+  background: rgba(0, 0, 0, 0.4);
   width: 100vw;
   height: 30%;
   position: absolute;
@@ -157,40 +172,39 @@
   padding: 10px 4px 4px 10px;
 }
 
-.tTit{
+.tTit {
   font-size: 30px;
   text-align: center;
   color: #fff;
   margin-bottom: 12px;
 }
 
-.inputBox{
+.inputBox {
   display: flex;
   justify-content: center;
   position: relative;
 }
 
-.tName p, .tOtt p{
+.tName p,
+.tOtt p {
   margin-top: 10px;
   font-size: 22px;
   margin-right: 30px;
 }
 
-.tInput1 input{
+.tInput1 input {
   width: 160px;
   color: slateblue;
   font-size: 20px;
-
 }
-.tInput2 input{
+.tInput2 input {
   width: 300px;
   color: slateblue;
   margin-left: 30px;
   font-size: 20px;
-
 }
 
-.tBtn{
+.tBtn {
   display: block;
   background: slateblue;
   padding: 10px 8px 10px 8px;
@@ -201,19 +215,18 @@
   border-radius: 10px;
 }
 
-
-.tlist{
+.tlist {
   position: absolute;
   top: 50%;
   left: 40%;
 }
 
-.tlist ul{
+.tlist ul {
   display: flex;
   justify-content: space-between;
 }
 
-.tlist li{
+.tlist li {
   font-size: 20px;
   margin-bottom: 10px;
 }
