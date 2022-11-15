@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/css/style.css" />
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-
+    
+    <link rel="stylesheet" href="../static/css/style.css" />
 
     <title>OTT Planet main</title>
 
@@ -17,11 +17,11 @@
   <body>
       
     <div class="table">
-        <!-- <div class="tCon">
-            <button onclick="open_box()" id="ott">Netflix</button>
-            <button onclick="open_box()" id="ott">Wavve</button>
-            <button onclick="open_box()" id="ott">Disney+</button>
-        </div> -->
+        <div class="tCon">
+            <button onclick="ottBtnHandler(event)" id="Netflix">Netflix</button>
+            <button onclick="ottBtnHandler(event)" id="Wavve">Wavve</button>
+            <button onclick="ottBtnHandler(event)" id="Diseny+">Disney+</button>
+        </div>
         <div class="tWrap">
             <p class="tTit">Comment 작성</p>
             <thead>
@@ -46,6 +46,7 @@
                 <ul>
                     <li></li>
                     <li></li>
+                    <li></li>
                 </ul>
 
             </div>
@@ -53,8 +54,9 @@
     </div>
 
   <script>
+
   $(document).ready(function () {
-      show_comment();
+    show_comment();
   });
   
   function show_comment() {
@@ -65,32 +67,53 @@
           url: '/main',
           data: {},
           success: function (response) {
-              let rows = response['comments']
-              for(let i =0; i<rows.length; i++){
-                  let contents = rows[i]['contents']
-                  let comment = rows[i]['comment']
+            let rows = response['comments']
+            
+            for(let i =0; i<rows.length; i++){
+                let ott = rows[i]['ott']
+                let contents = rows[i]['contents']
+                let comment = rows[i]['comment']
   
-                  let temp_html = `<ul>
-                                      <li>${contents}</li>
-                                      <li>${comment}</li>
-                                  </ul>`
+                let temp_html = `<ul>
+                                    <li>${ott}</li>
+                                    <li>${contents}</li>
+                                    <li>${comment}</li>
+                                </ul>`
   
-                  $('#tBox').append(temp_html)
+                $('#tBox').append(temp_html)
               }
           }
       });
   }
 
+  //버튼 눌렀을 때 ott명 보여주기
+  function ottBtnHandler(e){
+    const ott = e.target.innerText; //Netflix, Wavve, Disney+ 출력됨
 
+    //또다른 변수 정의해서 db에 저장했다가 뿌려주는 방법???
+    let ottVal = $('#contents').val()
+    $.ajax({
+        type: 'POST',
+        url: '/main',
+        data: { ott_give: ottVal},
+           success: function (response) {
+            console.log(response)
+              window.location.reload()
+          }
+      });
+    
   
+  }
+
+
   function add_comment() {
       let contents = $('#contents').val()
       let comment = $('#comment').val()
   
       $.ajax({
-          type: 'POST',
-          url: '/main',
-          data: { contents_give: contents, comment_give: comment},
+        type: 'POST',
+        url: '/main',
+        data: { contents_give: contents, comment_give: comment},
            success: function (response) {
             console.log(response)
               alert(response['msg'])

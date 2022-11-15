@@ -1,9 +1,10 @@
-import requests
+# import requests
 from flask import Flask, jsonify, render_template, request
-
 app = Flask(__name__)
-import certifi
+
+
 from pymongo import MongoClient
+import certifi
 
 ca = certifi.where()
 
@@ -36,16 +37,17 @@ headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/
 
 # main -comments : 위 아래 코드 삭제?
 
-@app.route('/main')
-def main():
+@app.route('/')
+def home():
     return render_template('main.html')
 
 @app.route("/main", methods=["POST"])
 def comments_post():
+    ott_receive = request.form['ott_give']
     contents_receive = request.form['contents_give']
     comment_receive = request.form['comment_give']
 
-    db.comments.insert_one({'contents' : contents_receive, 'comment' : comment_receive})
+    db.comments.insert_one({'ott': ott_receive,'contents' : contents_receive, 'comment' : comment_receive})
     
     return jsonify({'msg': '한 줄 평 작성 완료'})
 
