@@ -32,22 +32,22 @@ def home():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
-
-
 @app.route('/api/join', methods=['POST'])
 def api_register():
     name_receive = request.form['name_give']
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give']
-    nickName_receive = request.form['nickName_give']
-    db.userinfo.insert_one({'name':name_receive, 'id': id_receive, 'pw': pw_receive, 'nickName' : nickName_receive})
+    nickname_receive = request.form['nickName_give']
+
+    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+
+    db.userinfo.insert_one({'name' : name_receive, 'id': id_receive, 'pw': pw_hash, 'nickName' : nickname_receive})
 
     return jsonify({'result': '회원가입 성공!'})
 
 @app.route('/join')
 def register():
     return render_template('join.html')
-
 
 @app.route('/login')
 def login():
@@ -58,28 +58,27 @@ def login():
 # id, pw를 받아서 맞춰보고, 토큰을 만들어 발급합니다.
 @app.route('/api/login', methods=['POST'])
 def api_login():
-        id_receive = request.form['id_give']
-        pw_receive = request.form['pw_give']
+    id_receive = request.form['id_give']
+    pw_receive = request.form['pw_give']
 
-        # 회원가입 때와 같은 방법으로 pw를 암호화합니다.
-        pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+    # 회원가입 때와 같은 방법으로 pw를 암호화합니다.
+    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
-        # id, 암호화된pw을 가지고 해당 유저를 찾습니다.
-        result = db.userinfo.find_one({'id': id_receive, 'pw': pw_hash})
-        print(result)
-        # 찾으면 JWT 토큰을 만들어 발급합니다.
-        if result is not None:
-
-            payload = {
-                'id': id_receive,
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
-            }
-            mytoken = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
-            # token을 줍니다.
-            return jsonify({'result': 'success', 'token': mytoken})
+    # id, 암호화된pw을 가지고 해당 유저를 찾습니다.
+    result = db.userinfo.find_one({'id': id_receive, 'pw': pw_hash})
+    print(result)
+    # 찾으면 JWT 토큰을 만들어 발급합니다.
+    if result is not None:
+        payload = {
+            'id': id_receive,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+        }
+        mytoken = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+        # token을 줍니다.
+        return jsonify({'result': 'success', 'token': mytoken})
         # 찾지 못하면
-        else:
-            return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
+    else:
+        return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
 if __name__ == '__main__':

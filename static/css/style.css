@@ -113,6 +113,8 @@
 .btn-container {
   margin-top: 2rem;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .btn-style {
