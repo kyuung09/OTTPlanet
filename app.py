@@ -22,16 +22,16 @@ import hashlib
 
 @app.route('/')
 def home():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.userinfo.find_one({"id": payload['id']})
-        return render_template('index.html')
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
-    except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
-
+    # token_receive = request.cookies.get('mytoken')
+    # try:
+    #     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    #     user_info = db.userinfo.find_one({"id": payload['id']})
+    #     return render_template('index.html')
+    # except jwt.ExpiredSignatureError:
+    #     return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    # except jwt.exceptions.DecodeError:
+    #     return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+    return render_template('index.html')
 
 @app.route('/main')
 def main():
@@ -39,22 +39,28 @@ def main():
 
 
 @app.route("/api/mainpost", methods=["POST"])
-def comments_post():
-    # nickName_receive = request.form['nickName_give']
-    ott_receive = request.form['ott_give']
-    contents_receive = request.form['contents_give']
-    comment_receive = request.form['comment_give']
+def api_valid_post():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
+        ott_receive = request.form['ott_give']
+        contents_receive = request.form['contents_give']
+        comment_receive = request.form['comment_give']
+        db.comments.insert_one({'ott': ott_receive, 'contents': contents_receive, 'comment': comment_receive})
+        return jsonify({'msg': '한 줄 평 작성 완료'})
 
-    db.comments.insert_one({'ott': ott_receive,'contents' : contents_receive, 'comment' : comment_receive})
-    
-    return jsonify({'msg': '한 줄 평 작성 완료'})
 
+    except jwt.ExpiredSignatureError:
+        # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
+        return jsonify({'msg': 'timeOut'})
+    except jwt.exceptions.DecodeError:
+        return jsonify({'msg': 'invalid'})
 
 
 @app.route("/api/mainget", methods=["GET"])
 def comments_get():
         comments_list = list(db.comments.find({},{'_id': False}))
-
         return jsonify({'comments': comments_list})
 
 

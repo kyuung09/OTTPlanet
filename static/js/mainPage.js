@@ -30,40 +30,35 @@ function show_comment() {
   });
 }
 
-//버튼 눌렀을 때 ott명 보여주기
-//   function ottBtnHandler(e){
-//     const ott = e.target.innerText; //Netflix, Wavve, Disney+ 출력됨
-
-//     $.ajax({
-//         type: 'POST',
-//         url: '/main',
-//         data: { ott_give: ott},
-//            success: function (response) {
-//             console.log(response)
-//               alert(response['msg'])
-//               window.location.reload()
-//           }
-//       });
-
-//   }
-
 function save_comment() {
   let ott = $("#ott").val();
   let contents = $("#contents").val();
   let comment = $("#comment").val();
 
-  $.ajax({
-    type: "POST",
-    url: "/api/mainpost",
-    data: {
-      ott_give: ott,
-      contents_give: contents,
-      comment_give: comment,
-    },
-    success: function (response) {
-      console.log(response);
-      alert(response["msg"]);
-      window.location.reload();
-    },
-  });
+  const ottIsValid = ott !== "-- OTT --";
+  const contentsIsValid = contents.trim().length !== 0;
+  const commentIsValid = comment.trim().length !== 0;
+
+  if (ottIsValid && contentsIsValid && commentIsValid) {
+    $.ajax({
+      type: "POST",
+      url: "/api/mainpost",
+      data: {
+        ott_give: ott,
+        contents_give: contents,
+        comment_give: comment,
+      },
+      success: function (response) {
+        if (response["msg"] === "timeOut" || response["msg"] === "invalid") {
+          alert("로그인 후 작성하실 수 있습니다!");
+          location.href = "/login";
+        } else {
+          alert("작성 성공!");
+          window.location.reload();
+        }
+      },
+    });
+  } else {
+    alert("값을 모두 입력해주세요!");
+  }
 }
