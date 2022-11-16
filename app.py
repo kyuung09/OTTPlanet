@@ -43,13 +43,13 @@ def api_valid_post():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
+        userinfo = db.userinfo.find_one({'id': payload['id']}, {'_id': 0})
+        nickname_receive = userinfo["nickName"]
         ott_receive = request.form['ott_give']
         contents_receive = request.form['contents_give']
         comment_receive = request.form['comment_give']
-        db.comments.insert_one({'ott': ott_receive, 'contents': contents_receive, 'comment': comment_receive})
+        db.comments.insert_one({'nickname': nickname_receive, 'ott': ott_receive, 'contents': contents_receive, 'comment': comment_receive})
         return jsonify({'msg': '한 줄 평 작성 완료'})
-
 
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
@@ -61,6 +61,7 @@ def api_valid_post():
 @app.route("/api/mainget", methods=["GET"])
 def comments_get():
         comments_list = list(db.comments.find({},{'_id': False}))
+        print(comments_list)
         return jsonify({'comments': comments_list})
 
 

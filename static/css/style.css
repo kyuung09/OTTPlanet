@@ -236,8 +236,11 @@
 }
 
 .tlist ul {
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.442);
+  padding: 10px 0;
 }
 
 .tlist li {
@@ -246,8 +249,32 @@
   margin-right: 40px;
 }
 
-.tlist li:last-child {
-  margin-left: 100px;
+.tlist li.liNick {
+  width: 200px;
+  text-align: center;
+}
+
+.tlist li.liOtt {
+  width: 100px;
+  text-align: center;
+}
+
+.tlist li.liContents {
+  width: 200px;
+  text-align: center;
+}
+
+.tlist li.liComment {
+  width: 700px;
+}
+
+#tBox {
+  margin-top: 0;
+}
+
+.tableTit {
+  font-weight: bolder;
+  text-align: center;
 }
 
 /* 더미 */

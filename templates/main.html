@@ -17,9 +17,11 @@
     <div class="main-wrap">
       <div class="table">
         <div class="tCon">
-          <button onclick="ottBtnHandler(event)" id="Netflix">Netflix</button>
-          <button onclick="ottBtnHandler(event)" id="Wavve">Wavve</button>
-          <button onclick="ottBtnHandler(event)" id="Diseny+">Disney+</button>
+          <button onclick="ottBtnHandler('Netflix')" id="Netflix">
+            Netflix
+          </button>
+          <button onclick="ottBtnHandler('Wavve')" id="Wavve">Wavve</button>
+          <button onclick="ottBtnHandler('Watcha')" id="Watcha">Watcha</button>
         </div>
 
         <div class="dummy-content"></div>
@@ -36,7 +38,7 @@
                     <option selected>-- OTT --</option>
                     <option value="netflix">Netflix</option>
                     <option value="wavve">Wavve</option>
-                    <option value="disney">Disney+</option>
+                    <option value="Watcha">Watcha</option>
                   </select>
                   <div class="tInput1">
                     <input id="contents" type="text" placeholder="Contents" />
@@ -49,13 +51,15 @@
                 <button onclick="save_comment()" class="tBtn">글쓰기</button>
               </div>
             </thead>
-            <div id="tBox" class="tlist">
+            <div class="tlist tableTit">
               <ul>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li class="liNick">닉네임</li>
+                <li class="liOtt">OTT명</li>
+                <li class="liContents">컨텐츠 이름</li>
+                <li class="liComment">리뷰</li>
               </ul>
             </div>
+            <div id="tBox" class="tlist"></div>
           </div>
         </div>
       </div>

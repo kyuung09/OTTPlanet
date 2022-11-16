@@ -1,3 +1,15 @@
+const netBtn = document.querySelector("#Netflix");
+const WvBtn = document.querySelector("#Wavve");
+const TvBtn = document.querySelector("#Netflix");
+
+const ottBtnHandler = (ottName) => {
+  // 필터 기능....
+  // 디폴트 화면 = 넷플이 눌려있는 상태
+  // 매개변수로 가져온 ottName이 넷플이라면,
+  // 받아온 데이터 중 ott의 이름이 넷플인 것만
+  // 리스트를 뽑아줘
+};
+
 $(document).ready(function () {
   show_comment();
 });
@@ -11,24 +23,25 @@ function show_comment() {
     data: {},
     success: function (response) {
       let rows = response["comments"];
-
       for (let i = 0; i < rows.length; i++) {
-        // let nickName = rows[i]['nickName']
+        let nickname = rows[i]["nickname"];
         let ott = rows[i]["ott"];
         let contents = rows[i]["contents"];
         let comment = rows[i]["comment"];
 
         let temp_html = `<ul>
-                              <li>${ott}</li>
-                              <li>${contents}</li>
-                              <li>${comment}</li>
+                              <li class='liNick'>${nickname}</li>
+                              <li class='liOtt'>${ott}</li>
+                              <li class='liContents'>${contents}</li>
+                              <li class='liComment'>${comment}</li>
                           </ul>`;
-
         $("#tBox").append(temp_html);
       }
     },
   });
 }
+
+const getNickname = () => {};
 
 function save_comment() {
   let ott = $("#ott").val();
