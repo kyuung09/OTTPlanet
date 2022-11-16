@@ -84,7 +84,6 @@ function show_mainN() {
           <img src="${img}" />
         </div>
       </div>`;
-        console.log(temp_html);
         $("#Netflix").append(temp_html);
       }
       const swiper = new Swiper(".slide1", {
@@ -124,7 +123,6 @@ function open_box2() {
           <img src="${img}" />
         </div>
       </div>`;
-        console.log(temp_html);
         $("#Wavve").append(temp_html);
       }
       const swiper = new Swiper(".slide2", {
@@ -162,7 +160,6 @@ function open_box3() {
           <img src="${img}" />
         </div>
       </div>`;
-        console.log(temp_html);
         $("#Watcha").append(temp_html);
       }
       const swiper = new Swiper(".slide3", {
