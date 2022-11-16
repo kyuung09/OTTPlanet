@@ -17,6 +17,15 @@ header .mainLoginBtn {
   padding: 0.4rem 1rem;
   border-radius: 3rem;
 }
+
+.mainHeader p {
+  font-size: 16px;
+}
+
+header .mainLoginBtn.hide {
+  display: none;
+}
+
 .slide-container {
   margin-bottom: 50px;
   overflow: hidden;

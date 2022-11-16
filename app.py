@@ -123,12 +123,11 @@ def api_login():
 
     # id, 암호화된pw을 가지고 해당 유저를 찾습니다.
     result = db.userinfo.find_one({'id': id_receive, 'pw': pw_hash})
-    print(result)
     # 찾으면 JWT 토큰을 만들어 발급합니다.
     if result is not None:
         payload = {
             'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
         }
         mytoken = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
         # token을 줍니다.
@@ -136,6 +135,36 @@ def api_login():
         # 찾지 못하면
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
+
+
+@app.route('/api/nickname')
+def printnick():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        userinfo = db.userinfo.find_one({'id': payload['id']}, {'_id': 0})
+        nickname_receive = userinfo["nickName"]
+        return jsonify({'nickname': nickname_receive})
+
+    except jwt.ExpiredSignatureError:
+        nickname_receive = "비회원"
+        return jsonify({'nickname': nickname_receive})
+    except jwt.exceptions.DecodeError:
+        nickname_receive = "비회원"
+        return jsonify({'nickname': nickname_receive})
+
+@app.route('/api/loginbtn')
+def loginbtn():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        userinfo = db.userinfo.find_one({'id': payload['id']}, {'_id': 0})
+        return jsonify({'result': 'success'})
+
+    except jwt.ExpiredSignatureError:
+        return jsonify({'result': 'fail'})
+    except jwt.exceptions.DecodeError:
+        return jsonify({'result': 'fail'})
 
 
 @app.route('/api/netflixView', methods=['GET'])

@@ -47,10 +47,23 @@ const nickNames = {
 };
 
 const inputIsValid = (first, last, id, pw, pwCheck) => {
+  const fNameIsValid = first.trim().length !== 0; // isValid 가 true면, 유효하다는 거
+  const lNameIsValid = last.trim().length !== 0; // isValid 가 true면, 유효하다는 거
+  const idIsValid = id.trim().length !== 0; // isValid 가 true면, 유효하다는 거
+  const pwIsValid = pw.trim().length !== 0; // isValid 가 true면, 유효하다는 거
+  const pwCheckIsValid = pwCheck.trim().length !== 0; // isValid 가 true면, 유효하다는 거
+
   if (pw !== pwCheck) {
     alert("비밀번호가 일치하지 않습니다!");
     return false;
-  } else if (first && last && id && pw && pwCheck && pw === pwCheck) {
+  } else if (
+    fNameIsValid &&
+    lNameIsValid &&
+    idIsValid &&
+    pwIsValid &&
+    pwCheckIsValid &&
+    pw === pwCheck
+  ) {
     return true;
   } else {
     alert("빈 칸을 모두 입력해주세요!");

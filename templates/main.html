@@ -21,13 +21,19 @@
     <div class="main-wrap">
       <div class="top-content">
         <div class="mytitle">
-          <header>
+          <header class="mainHeader">
             <h1 class="Logo"><img src="../static/img/logo.png" /></h1>
-            <button class="mainLoginBtn">Login</button>
+            <button
+              class="mainLoginBtn"
+              id="loginBtn"
+              onclick="location.href='/login'"
+            >
+              Login
+            </button>
           </header>
           <h3 class="tit">
             Chose Your <br />
-            OTT Contents!
+            OTT Platform!
           </h3>
           <div class="box-cont">
             <button class="OTTTapBtn" onclick="open_box1()">NETFLIX</button>
@@ -64,7 +70,7 @@
       <div class="table">
         <div class="tcontent">
           <div class="tWrap">
-            <p class="tTit">Comment 작성</p>
+            <p class="tTit">추천 컨텐츠 작성</p>
             <thead>
               <div class="comment-input-wrap">
                 <div class="inputBox">
@@ -79,7 +85,11 @@
                   </div>
 
                   <div class="tInput2">
-                    <input id="comment" type="text" placeholder="Comment" />
+                    <input
+                      id="comment"
+                      type="text"
+                      placeholder="Recommend Contents"
+                    />
                   </div>
                 </div>
                 <button onclick="save_comment()" class="tBtn">글쓰기</button>
@@ -96,7 +106,7 @@
                 <li class="liNick">닉네임</li>
                 <li class="liOtt">OTT명</li>
                 <li class="liContents">컨텐츠 이름</li>
-                <li class="liComment">리뷰</li>
+                <li class="liComment">컨텐츠 리뷰</li>
               </ul>
             </div>
             <div id="tBox" class="tlist"></div>

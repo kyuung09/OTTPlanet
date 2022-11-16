@@ -180,8 +180,47 @@ function open_box3() {
   });
 }
 
+// 메인 로그인 상태 확인
+const header = document.querySelector(".mainHeader");
+
+function printNick() {
+  $.ajax({
+    type: "GET",
+    url: "/api/nickname",
+    data: {},
+    success: function (response) {
+      const nick = response["nickname"];
+      if (nick === "비회원") {
+        return;
+      } else {
+        const p = document.createElement("p");
+        p.innerText = `환영합니다! ${nick}님!!`;
+        header.appendChild(p);
+      }
+    },
+  });
+}
+
+function loginbtn() {
+  $.ajax({
+    type: "GET",
+    url: "/api/loginbtn",
+    data: {},
+    success: function (response) {
+      console.log(response["result"]);
+      if (response["result"] == "success") {
+        $("#loginBtn").hide();
+      } else {
+        $("#loginBtn").show();
+      }
+    },
+  });
+}
+
 $(document).ready(function () {
   show_comment("showAll");
   open_box1();
   show_mainN();
+  printNick();
+  loginbtn();
 });
