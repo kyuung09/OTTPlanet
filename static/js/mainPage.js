@@ -92,12 +92,11 @@ function show_mainN() {
 
         pagination: {
           el: ".swiper-pagination",
-          clickable: true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+          clickable: true,
         },
         navigation: {
-          // 네비게이션
-          nextEl: ".swiper-button-next", // 다음 버튼 클래스명
-          prevEl: ".swiper-button-prev", // 이번 버튼 클래스명
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         },
       });
     },
@@ -131,12 +130,11 @@ function open_box2() {
 
         pagination: {
           el: ".swiper-pagination",
-          clickable: true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+          clickable: true,
         },
         navigation: {
-          // 네비게이션
-          nextEl: ".swiper-button-next", // 다음 버튼 클래스명
-          prevEl: ".swiper-button-prev", // 이번 버튼 클래스명
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         },
       });
       $(".slide1").hide();
@@ -168,12 +166,11 @@ function open_box3() {
 
         pagination: {
           el: ".swiper-pagination",
-          clickable: true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+          clickable: true,
         },
         navigation: {
-          // 네비게이션
-          nextEl: ".swiper-button-next", // 다음 버튼 클래스명
-          prevEl: ".swiper-button-prev", // 이번 버튼 클래스명
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         },
       });
       $(".slide1").hide();

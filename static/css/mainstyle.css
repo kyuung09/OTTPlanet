@@ -22,14 +22,29 @@ header .mainLoginBtn {
   overflow: hidden;
 }
 
+.swiper {
+  position: relative;
+}
+
 .swiper-slide {
   text-align: center;
   align-items: center; /* 위아래 기준 중앙정렬 */
   justify-content: center; /* 좌우 기준 중앙정렬 */
 }
 
-/* .swiper-slide img {
-  max-width: 100%;
+.next-prev-btn-cont {
+  position: absolute;
+  width: 1380px;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+/* .next-prev-btn-cont .swiper-button-prev {
+}
+.next-prev-btn-cont .swiper-button-next {
+  transform: translateY(-50%);
 } */
 
 .Logo img {
