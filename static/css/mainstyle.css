@@ -1,0 +1,75 @@
+.top-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+header .mainLoginBtn {
+  font-size: 1.5rem;
+  font-family: "yg-jalnan";
+  color: #333;
+  background: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 3rem;
+}
+.slide-container {
+  margin-bottom: 50px;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  text-align: center;
+  align-items: center; /* 위아래 기준 중앙정렬 */
+  justify-content: center; /* 좌우 기준 중앙정렬 */
+}
+
+/* .swiper-slide img {
+  max-width: 100%;
+} */
+
+.Logo img {
+  width: 200px;
+}
+
+.tit {
+  margin: 20px 0;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.box-cont {
+  margin-bottom: 50px;
+}
+
+.mytitle .box-cont button {
+  width: 180px;
+  height: 50px;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 100px;
+  border: 2px solid white;
+  margin-top: 10px;
+}
+
+.OTTTapBtn {
+  margin-right: 15px;
+}
+
+.order > table {
+  margin: 40px 0;
+  font-size: 18px;
+}
+
+.inside-cont {
+  width: 300px;
+}
+.inside-cont img {
+  width: 100%;
+}

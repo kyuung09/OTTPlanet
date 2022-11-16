@@ -7,14 +7,59 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
     <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/mainstyle.css" />
     <title>OTT Planet main</title>
   </head>
 
   <body style="height: auto">
     <div class="main-wrap">
+      <div class="top-content">
+        <div class="mytitle">
+          <header>
+            <h1 class="Logo"><img src="../static/img/logo.png" /></h1>
+            <button class="mainLoginBtn">Login</button>
+          </header>
+          <h3 class="tit">
+            Chose Your <br />
+            OTT Contents!
+          </h3>
+          <div class="box-cont">
+            <button class="OTTTapBtn" onclick="open_box1()">NETFLIX</button>
+            <button class="OTTTapBtn" onclick="open_box2()">WAVVE</button>
+            <button class="OTTTapBtn" onclick="open_box3()">Watcha</button>
+          </div>
+        </div>
+
+        <!-- 클래스명은 변경하면 안 됨 -->
+        <div class="slide-container">
+          <div class="swiper slide1">
+            <div class="swiper-wrapper" id="Netflix"></div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+          <div class="swiper slide2">
+            <div class="swiper-wrapper" id="Wavve"></div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+
+          <div class="swiper slide3">
+            <div class="swiper-wrapper" id="Watcha"></div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </div>
       <div class="table">
-        <div class="dummy-content"></div>
         <div class="tcontent">
           <div class="tWrap">
             <p class="tTit">Comment 작성</p>

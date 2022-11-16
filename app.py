@@ -1,5 +1,7 @@
-import requests
+
 from flask import Flask, render_template, request, jsonify, redirect, url_for
+import requests
+from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 from pymongo import MongoClient
@@ -18,6 +20,9 @@ import jwt
 import datetime
 
 import hashlib
+
+
+
 
 
 @app.route('/')
@@ -56,6 +61,25 @@ def api_valid_post():
         return jsonify({'msg': 'timeOut'})
     except jwt.exceptions.DecodeError:
         return jsonify({'msg': 'invalid'})
+
+
+
+@app.route("/api/mainnet", methods=["GET"])
+def netflix_slide():
+    data = requests.get(
+        'https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bkdJ&qvt=0&query=%EB%84%B7%ED%94%8C%EB%A6%AD%EC%8A%A4%20%EC%B6%94%EC%B2%9C',
+        headers=headers)
+    soup = BeautifulSoup(data.text, 'html.parser')
+    netflixlist = soup.select('#mflick > div > div > ul:nth-child(1) > li')
+
+    netflixrank = []
+    for netflix in netflixlist:
+        title = netflix.select_one('strong > a').text
+        img = netflix.select_one('div.thumb_area > a > img')['src']
+        netflixrank.append({jsonify({'title': title, 'img':img})})
+
+    return netflixrank
+
 
 
 @app.route("/api/mainget", methods=["GET"])
@@ -113,6 +137,57 @@ def api_login():
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
+
+@app.route('/api/netflixView', methods=['GET'])
+def nexflexcrawling():
+    urlNet = 'https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bkdJ&qvt=0&query=%EB%84%B7%ED%94%8C%EB%A6%AD%EC%8A%A4%20%EC%B6%94%EC%B2%9C'
+    dataNet = requests.get(urlNet, headers=headers)
+    soupNet = BeautifulSoup(dataNet.text, 'html.parser')
+
+    N_count = 1
+    title_list = []
+    for rrr in range(8):
+        title = \
+            soupNet.select_one(
+                f'#mflick > div > div > ul:nth-child(1) > li:nth-child({N_count}) > div.thumb_area > a > img')[
+                'src']
+        title_list.append(title)
+        N_count += 1
+    return jsonify({'Netflixvar': title_list})
+
+@app.route('/api/watchaView')
+def watchacrawling():
+    urlwat = 'https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EC%99%93%EC%B0%A8+%EC%B6%94%EC%B2%9C&oquery=%EB%84%B7%ED%94%8C%EB%A6%AD%EC%8A%A4+%EC%B6%94%EC%B2%9C&tqi=h3nPpdprvxsssS6jd4CssssstSK-281209'
+    datawat = requests.get(urlwat, headers=headers)
+    soupWat = BeautifulSoup(datawat.text, 'html.parser')
+
+    w_count = 1
+    title_list = []
+    for rrr in range(8):
+        title = \
+            soupWat.select_one(
+                f'#mflick > div > div > ul:nth-child(1) > li:nth-child({w_count}) > div.thumb_area > a > img')[
+                'src']
+        title_list.append(title)
+        w_count += 1
+    return jsonify({'watchavar': title_list})
+
+@app.route('/api/wavveView')
+def wavvecrawling():
+    urlWav = 'https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EC%9B%A8%EC%9D%B4%EB%B8%8C+%EC%B6%94%EC%B2%9C&oquery=%EC%99%93%EC%B0%A8+%EC%B6%94%EC%B2%9C&tqi=h3nm1wp0JXVsseo3U3ossssstiN-478837'
+    dataWav = requests.get(urlWav, headers=headers)
+    soupWav = BeautifulSoup(dataWav.text, 'html.parser')
+
+    V_count = 1
+    title_list = []
+    for rrr in range(8):
+        title = \
+            soupWav.select_one(
+                f'#mflick > div > div > ul:nth-child(1) > li:nth-child({V_count}) > div.thumb_area > a > img')[
+                'src']
+        title_list.append(title)
+        V_count += 1
+    return jsonify({'Wavvevar': title_list})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5555, debug=True)

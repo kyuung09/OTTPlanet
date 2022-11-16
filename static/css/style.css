@@ -146,6 +146,8 @@
 /* main -ott btn test */
 .main-wrap {
   height: 100%;
+  background-image: url(../img/back_.jpg);
+  background-size: cover;
 }
 
 .tCon {
@@ -175,8 +177,7 @@
 .table {
   width: 100%;
   height: 100%;
-  background-image: url(../img/back_.jpg);
-  background-size: cover;
+
   min-height: 100vh;
 }
 
@@ -296,7 +297,3 @@
 }
 
 /* 더미 */
-.dummy-content {
-  width: 100%;
-  height: 700px;
-}
