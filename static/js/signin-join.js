@@ -104,7 +104,7 @@ const signUp = () => {
       },
       success: function (response) {
         alert(response["result"]);
-        location.href = "/main";
+        location.href = "/login";
       },
     });
   } else {

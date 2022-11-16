@@ -7,23 +7,13 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-
     <link rel="stylesheet" href="../static/css/style.css" />
-
     <title>OTT Planet main</title>
   </head>
 
-  <body>
+  <body style="height: auto">
     <div class="main-wrap">
       <div class="table">
-        <div class="tCon">
-          <button onclick="ottBtnHandler('Netflix')" id="Netflix">
-            Netflix
-          </button>
-          <button onclick="ottBtnHandler('Wavve')" id="Wavve">Wavve</button>
-          <button onclick="ottBtnHandler('Watcha')" id="Watcha">Watcha</button>
-        </div>
-
         <div class="dummy-content"></div>
         <div class="tcontent">
           <div class="tWrap">
@@ -36,8 +26,8 @@
                   </div>
                   <select id="ott" class="ottSelect">
                     <option selected>-- OTT --</option>
-                    <option value="netflix">Netflix</option>
-                    <option value="wavve">Wavve</option>
+                    <option value="Netflix">Netflix</option>
+                    <option value="Wavve">Wavve</option>
                     <option value="Watcha">Watcha</option>
                   </select>
                   <div class="tInput1">
@@ -51,6 +41,12 @@
                 <button onclick="save_comment()" class="tBtn">글쓰기</button>
               </div>
             </thead>
+            <div class="tCon">
+              <button onclick="ottSortHandler('showAll')">Show All</button>
+              <button onclick="ottSortHandler('Netflix')">Netflix</button>
+              <button onclick="ottSortHandler('Wavve')">Wavve</button>
+              <button onclick="ottSortHandler('Watcha')">Watcha</button>
+            </div>
             <div class="tlist tableTit">
               <ul>
                 <li class="liNick">닉네임</li>
