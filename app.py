@@ -32,6 +32,32 @@ def home():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
+
+@app.route('/main')
+def main():
+    return render_template('main.html')
+
+
+@app.route("/api/mainpost", methods=["POST"])
+def comments_post():
+    # nickName_receive = request.form['nickName_give']
+    ott_receive = request.form['ott_give']
+    contents_receive = request.form['contents_give']
+    comment_receive = request.form['comment_give']
+
+    db.comments.insert_one({'ott': ott_receive,'contents' : contents_receive, 'comment' : comment_receive})
+    
+    return jsonify({'msg': '한 줄 평 작성 완료'})
+
+
+
+@app.route("/api/mainget", methods=["GET"])
+def comments_get():
+        comments_list = list(db.comments.find({},{'_id': False}))
+
+        return jsonify({'comments': comments_list})
+
+
 @app.route('/api/join', methods=['POST'])
 def api_register():
     name_receive = request.form['name_give']
