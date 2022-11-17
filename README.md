@@ -21,8 +21,8 @@ http://ottplanet.shop/main
 <img width="923" alt="image" src="https://user-images.githubusercontent.com/117708164/202368972-1fee1a1f-0983-42f4-957d-f1735e65cc14.png">
 
 ## 4. 기술 스택 
-- Frontend : HTML5, CSS3, Bootstrap5.0, JavaScript, Jquery, Ajax
-- Backend : Python, Flask , JWT
+- Frontend : HTML5, CSS3, JavaScript, Jquery, Ajax, Swiper(slide)
+- Backend : Python, Flask , JWT, BS4, Datetime, hashlib
 - DB : MongoDB
 - Infrastructure : AWS EC2
 
@@ -37,7 +37,7 @@ http://ottplanet.shop/main
 
 (3) 추천 컨텐츠 작성 게시판
 - 로그인 시 익명(랜덤 닉네임)으로 게시판 작성 
-- OTT별 컨텐츠 추천 글 조회 가능 
+- OTT별 컨텐츠 추천 글 작성 및 조회(필터링) 기능 제공  
 
 ## 6. Trouble shooting
 <details>
@@ -60,3 +60,19 @@ http://ottplanet.shop/main
 - 슬라이드가 만들어진 뒤에 데이터를 받아와서 에러가 나는 것 같다는 결론을 내고 웨이브/왓챠 버튼을 누를 때, api 데이터를 받아오고,<br>
   그 후에 슬라이드를 생성하는 방식으로 바꾸었더니 정상적으로 출력 됨
 </details>
+<details>
+<summary> 레이아웃 충돌 오류 </summary>
+<!--  -->
+- 레이아웃 설계시 한 줄 평 작성, 한 줄 평 보여주기 기능이 충돌이 생겼다. <br>
+- 기능을 작은 단위로 기능을 따로 작게 나눠야하고, 콘텐츠 클릭 시 어떤 걸 화면에 보여주고 싶은지 명확하게 정의해야하는것을 알게되었다. <br>
+-  콘텐츠 영역이 슬라이더 밑에 넣으려고 position:absolute 로 띄웠는데 다른 팀원들 노트북 화면에서 확인시 레이아웃이 엉망이었다. <br>
+- 슬라이더 부분을 임시로 div를 만들어놓고 그 밑에 영역을 각각 따로 만들어주고 display flex를 주었더니 해결되었다.
+</details>    
+<details>
+<summary> 동적 크롤링 사용 방법 </summary>
+<!--  -->
+- 웹 크롤링을 하기위해 selenium, webdriver패키지를 활용한 '동적 크롤링' 을 활용하기로 했다.<br>
+- 'pycham' 설정의 인터프리터를 이용한 패키지 설치에서는 'webdriver'가 설치가 안되어 구글링을 해보았다.<br>
+- 구글링 히스토리 : <br>
+적절한 경로에서 설치가 필요함 > 명령프롬프트 및 파이썬 쉘에서 명령어로 직접설치 > 파이썬 버전이 낮음 > 드라이버 버전이 낮음 > 드라이버 설치에러 > 환경변수 오류로 인한 패키지 설치 오류 > 구글 웹드라이버 설치 > driver = webdriver.Chrome(경로)로 해결!
+  </details>
