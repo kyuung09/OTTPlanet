@@ -9,7 +9,22 @@ header {
   padding: 1rem;
 }
 
+.header-right_cont {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 header .mainLoginBtn {
+  font-size: 1.5rem;
+  font-family: "yg-jalnan";
+  color: #333;
+  background: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 3rem;
+}
+
+header .mainLogoutBtn {
   font-size: 1.5rem;
   font-family: "yg-jalnan";
   color: #333;

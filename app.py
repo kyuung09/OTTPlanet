@@ -153,20 +153,6 @@ def printnick():
         nickname_receive = "비회원"
         return jsonify({'nickname': nickname_receive})
 
-@app.route('/api/loginbtn')
-def loginbtn():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        userinfo = db.userinfo.find_one({'id': payload['id']}, {'_id': 0})
-        return jsonify({'result': 'success'})
-
-    except jwt.ExpiredSignatureError:
-        return jsonify({'result': 'fail'})
-    except jwt.exceptions.DecodeError:
-        return jsonify({'result': 'fail'})
-
-
 @app.route('/api/netflixView', methods=['GET'])
 def nexflexcrawling():
     urlNet = 'https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bkdJ&qvt=0&query=%EB%84%B7%ED%94%8C%EB%A6%AD%EC%8A%A4%20%EC%B6%94%EC%B2%9C'

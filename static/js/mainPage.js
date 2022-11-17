@@ -181,9 +181,9 @@ function open_box3() {
 }
 
 // 메인 로그인 상태 확인
-const header = document.querySelector(".mainHeader");
+const headerRight = document.querySelector(".header-right_cont");
 
-function printNick() {
+function printBtn() {
   $.ajax({
     type: "GET",
     url: "/api/nickname",
@@ -191,36 +191,47 @@ function printNick() {
     success: function (response) {
       const nick = response["nickname"];
       if (nick === "비회원") {
-        return;
+        const btnDiv = document.createElement("div");
+        btnDiv.setAttribute("class", "loginout-btn");
+        btnDiv.innerHTML = `
+              <button
+                class="mainLoginBtn"
+                id="loginBtn"
+                onclick="location.href='/login'"
+              >
+                Login
+              </button>
+        `;
+        headerRight.appendChild(btnDiv);
       } else {
         const p = document.createElement("p");
         p.innerText = `환영합니다! ${nick}님!!`;
-        header.appendChild(p);
+        headerRight.appendChild(p);
+        const btnDiv = document.createElement("div");
+        btnDiv.setAttribute("class", "loginout-btn");
+        btnDiv.innerHTML = `
+              <button
+                class="mainLogoutBtn"
+                id="logoutBtn"
+                onclick="removeCookie()"
+              >
+                Logout
+              </button>
+        `;
+        headerRight.appendChild(btnDiv);
       }
     },
   });
 }
 
-function loginbtn() {
-  $.ajax({
-    type: "GET",
-    url: "/api/loginbtn",
-    data: {},
-    success: function (response) {
-      console.log(response["result"]);
-      if (response["result"] == "success") {
-        $("#loginBtn").hide();
-      } else {
-        $("#loginBtn").show();
-      }
-    },
-  });
+function removeCookie() {
+  $.removeCookie("mytoken", { path: "/" });
+  window.location.href = "/main";
 }
 
 $(document).ready(function () {
   show_comment("showAll");
   open_box1();
   show_mainN();
-  printNick();
-  loginbtn();
+  printBtn();
 });
