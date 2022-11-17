@@ -15,7 +15,7 @@ http://ottplanet.shop/main
 - 팀원 : 김규리, 신승호, 채하은, 최수빈
 
 ## 2. 시연 영상
-- URL : 
+- [시연 영상](https://www.youtube.com/watch?v=W72owmCVL0U)
 
 ## 3. 와이어프레임(초안)
 <img width="923" alt="image" src="https://user-images.githubusercontent.com/117708164/202368972-1fee1a1f-0983-42f4-957d-f1735e65cc14.png">
